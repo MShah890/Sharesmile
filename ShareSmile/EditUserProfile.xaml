@@ -1,0 +1,100 @@
+﻿<Page
+    x:Class="ShareSmile.EditUserProfile"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ShareSmile"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    >
+
+    <Grid x:Name="LayoutRoot" Background="White">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="0">
+            <Border Style="{StaticResource TitleBorderStyle}">
+                <TextBlock Text="ShareSmile" Style="{ThemeResource CustomTitleTextBlockStyle}" />
+            </Border>
+            <Border Style="{StaticResource SubtitleBorderStyle}">
+                <TextBlock Text="Edit Profile" Style="{ThemeResource CustomHeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+            </Border>
+        </StackPanel>
+
+        <!--TODO: Content should be placed within the following grid-->
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+            <ScrollViewer>
+                <StackPanel>
+                    <TextBox x:Name="txtFirst_Name" Style="{StaticResource TextBoxStyle1}" PlaceholderText="First Name"/>
+                    <TextBlock x:Name="tblFirst_Name_Error" Foreground="Red"/>
+                    
+                    <TextBox x:Name="txtLast_Name" Style="{StaticResource TextBoxStyle1}" PlaceholderText="Last Name"/>
+                    <TextBlock x:Name="tblLast_Name_Error" Foreground="Red"/>
+                    
+                    <!--<TextBlock Text="State"/>-->
+                    
+                    <ComboBox x:Name="cbState" SelectionChanged="cbState_SelectionChanged" PlaceholderText="Select State"  Style="{StaticResource CustomComboBox}" ItemTemplate="{StaticResource StateDropdownItemTemplate}">
+                        <!--<ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding State_Name}"  Foreground="Black"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>-->
+                    </ComboBox>
+                    <TextBlock x:Name="tblState_Error" Foreground="Red"/>
+                    
+                    <!--<TextBlock Text="City"/>-->
+
+                    <ComboBox x:Name="cbCity" PlaceholderText="Select City"  SelectionChanged="cbCity_SelectionChanged" ItemTemplate="{StaticResource CityDropdownItemTemplate}" Style="{StaticResource CustomComboBox}">
+                        <!--<ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding City_Name}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>-->
+                    </ComboBox>
+                    <TextBlock x:Name="tblCity_Error" Foreground="Red"/>
+
+                    <!--<TextBlock Text="Area"/>-->
+
+                    <ComboBox x:Name="cbArea" PlaceholderText="Select-Area" ItemTemplate="{StaticResource AreaDropdownItemTemplate}" Style="{StaticResource CustomComboBox}">
+                        <!--<ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Area_Name}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>-->
+                    </ComboBox>
+                    <TextBlock x:Name="tblArea_Error" Foreground="Red"/>
+
+
+                    <TextBox x:Name="txtAdrl_1" PlaceholderText="Address Line 1" Style="{StaticResource TextBoxStyle1}"/>
+                    <TextBlock x:Name="tbladrl1_Error" Foreground="Red"  />
+
+                    <TextBox x:Name="txtAdrl_2" PlaceholderText="Address Line 2" Style="{StaticResource TextBoxStyle1}"/>
+                    <TextBlock x:Name="tbladrl2_Error" Foreground="Red" />
+
+                    <TextBox x:Name="txtMobile_Number" PlaceholderText="Mobile Number" Style="{StaticResource TextBoxStyle1}"/>
+                    <TextBlock x:Name="tblMobile_Error" Foreground="Red"/>
+
+                    <TextBox x:Name="txtMobile_Alternate" PlaceholderText="Alternate Mobile Number" Style="{StaticResource TextBoxStyle1}"/>
+                    <TextBlock x:Name="tblMobile_Alternate_Error" Foreground="Red"/>
+
+
+                    <TextBox x:Name="txtEmail" PlaceholderText="Email" Style="{StaticResource TextBoxStyle1}"/>
+                    <TextBlock x:Name="tblEmail_Error" Foreground="Red"/>
+                    
+                        <Button Click="Save_Click" Content="Save" Style="{StaticResource ButtonStyle1}"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Page>

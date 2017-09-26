@@ -1,0 +1,10 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="TitleBrush" Color="#ffff66"/>
+    <SolidColorBrush x:Key="SubTitleBrush" Color="#ffff99"/>
+    <SolidColorBrush x:Key="PageContentBrush" Color="#ffffff"/>
+    <SolidColorBrush x:Key="TextBoxHoverBrush" Color=" #b35900"/>
+    <SolidColorBrush x:Key="ButtonBrush" Color=" #f2f2f2"/>
+    <SolidColorBrush x:Key="ButtonPressedBrush" Color="#ffff99"/>
+</ResourceDictionary>
