@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="38015fa8d2fc4e8680de8ee33caac7af" Name="Diagram1">
+        <EntityTypeShape EntityType="dbsharesmileModel.Area" Width="1.5" PointX="5.25" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbsharesmileModel.City" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbsharesmileModel.Driver" Width="1.5" PointX="7.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbsharesmileModel.Log_Table" Width="1.5" PointX="9.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbsharesmileModel.NGO" Width="1.5" PointX="7.5" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbsharesmileModel.NGO_DRIVER" Width="1.5" PointX="9.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbsharesmileModel.State" Width="1.5" PointX="0.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbsharesmileModel.Transaction_Table" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbsharesmileModel.User" Width="1.5" PointX="7.5" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbsharesmileModel.Volunteer" Width="1.5" PointX="7.5" PointY="19.875" IsExpanded="true" />
+        <AssociationConnector Association="dbsharesmileModel.FK_Area_ToCity" ManuallyRouted="false" />
+        <AssociationConnector Association="dbsharesmileModel.FK_Driver_ToArea" ManuallyRouted="false" />
+        <AssociationConnector Association="dbsharesmileModel.FK_NGO_ToArea" ManuallyRouted="false" />
+        <AssociationConnector Association="dbsharesmileModel.FK_User_ToArea" ManuallyRouted="false" />
+        <AssociationConnector Association="dbsharesmileModel.FK_Volunteer_ToArea" ManuallyRouted="false" />
+        <AssociationConnector Association="dbsharesmileModel.FK_City_ToState" ManuallyRouted="false" />
+        <AssociationConnector Association="dbsharesmileModel.FK_Log_Table_ToDriver" ManuallyRouted="false" />
+        <AssociationConnector Association="dbsharesmileModel.FK_NGO_DRIVER_ToDriver" ManuallyRouted="false" />
+        <AssociationConnector Association="dbsharesmileModel.FK_Transaction_Table_ToDriver" ManuallyRouted="false" />
+        <AssociationConnector Association="dbsharesmileModel.FK_Log_Table_ToUser" ManuallyRouted="false" />
+        <AssociationConnector Association="dbsharesmileModel.FK_Log_Table_ToVolunteer" ManuallyRouted="false" />
+        <AssociationConnector Association="dbsharesmileModel.FK_NGO_DRIVER_ToNGO" ManuallyRouted="false" />
+        <AssociationConnector Association="dbsharesmileModel.FK_Transaction_Table_ToUser" ManuallyRouted="false" />
+        <AssociationConnector Association="dbsharesmileModel.FK_Transaction_Table_ToVolunteer" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

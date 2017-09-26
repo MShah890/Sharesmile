@@ -1,0 +1,985 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbsharesmileModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="Area_Id" />
+          </Key>
+          <Property Name="Area_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Area_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="City_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="City_Id" />
+          </Key>
+          <Property Name="City_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="City_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="State_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Driver">
+          <Key>
+            <PropertyRef Name="Driver_Id" />
+          </Key>
+          <Property Name="Driver_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="F_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="L_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address_Line_1" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Address_Line_2" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Mobile_Number" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Mobile_Alternate" Type="char" MaxLength="10" />
+          <Property Name="Email" Type="varchar" MaxLength="254" />
+          <Property Name="Area_Id" Type="int" Nullable="false" />
+          <Property Name="Close" Type="bit" />
+          <Property Name="Password" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Account_Status" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Log_Table">
+          <Key>
+            <PropertyRef Name="Log_Table_Id" />
+          </Key>
+          <Property Name="Log_Table_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_Id" Type="int" />
+          <Property Name="Volunteer_Id" Type="int" />
+          <Property Name="Driver_Id" Type="int" />
+          <Property Name="Time_Begin" Type="datetime" />
+          <Property Name="Time_Close" Type="datetime" />
+          <Property Name="Items" Type="varchar" MaxLength="500" />
+          <Property Name="Successful" Type="bit" />
+          <Property Name="Vehicle" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="NGO">
+          <Key>
+            <PropertyRef Name="NGO_Id" />
+          </Key>
+          <Property Name="NGO_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Address_Line_1" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Address_Line_2" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Mobile_Number" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Mobile_Alternate" Type="char" MaxLength="10" />
+          <Property Name="Area_Id" Type="int" Nullable="false" />
+          <Property Name="NGO_Logo_File" Type="varchar(max)" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="254" Nullable="false" />
+          <Property Name="Website_URL" Type="varchar" MaxLength="2083" Nullable="false" />
+          <Property Name="Telephone" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Account_Status" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NGO_DRIVER">
+          <Key>
+            <PropertyRef Name="NGO_Driver_Id" />
+          </Key>
+          <Property Name="NGO_Driver_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NGO_Id" Type="int" Nullable="false" />
+          <Property Name="Driver_Id" Type="int" Nullable="false" />
+          <Property Name="Time_Stamp" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="State_Id" />
+          </Key>
+          <Property Name="State_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="State_Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Transaction_Table">
+          <Key>
+            <PropertyRef Name="Transaction_Id" />
+          </Key>
+          <Property Name="Transaction_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_Id" Type="int" />
+          <Property Name="Volunteer_Id" Type="int" />
+          <Property Name="Driver_Id" Type="int" />
+          <Property Name="Time_Begin" Type="datetime" />
+          <Property Name="Time_Close" Type="datetime" />
+          <Property Name="Items" Type="varchar" MaxLength="500" />
+          <Property Name="Successful" Type="bit" />
+          <Property Name="Vehicle" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="20" />
+          <Property Name="L_User" Type="varchar" MaxLength="20" />
+          <Property Name="L_Volunteer" Type="varchar" MaxLength="20" />
+          <Property Name="L_Driver" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_Id" />
+          </Key>
+          <Property Name="User_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="F_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="L_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address_Line_1" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Address_Line_2" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Area_Id" Type="int" Nullable="false" />
+          <Property Name="Mobile_Number" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Mobile_Alternate" Type="char" MaxLength="10" />
+          <Property Name="Email" Type="varchar" MaxLength="254" />
+          <Property Name="Close" Type="bit" />
+          <Property Name="Password" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Account_Status" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Volunteer">
+          <Key>
+            <PropertyRef Name="Volunteer_Id" />
+          </Key>
+          <Property Name="Volunteer_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NGO_Id" Type="int" Nullable="false" />
+          <Property Name="F_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="L_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address_Line_1" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Address_Line_2" Type="nchar" MaxLength="500" Nullable="false" />
+          <Property Name="Area_Id" Type="int" Nullable="false" />
+          <Property Name="Mobile_Number" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Mobile_Alternate" Type="char" MaxLength="10" />
+          <Property Name="Email" Type="varchar" MaxLength="254" />
+          <Property Name="Close" Type="bit" />
+          <Property Name="Password" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Account_Status" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Area_ToCity">
+          <End Role="City" Type="Self.City" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Area" Type="Self.Area" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="City_Id" />
+            </Principal>
+            <Dependent Role="Area">
+              <PropertyRef Name="City_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_City_ToState">
+          <End Role="State" Type="Self.State" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="City" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="State_Id" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="State_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Driver_ToArea">
+          <End Role="Area" Type="Self.Area" Multiplicity="1" />
+          <End Role="Driver" Type="Self.Driver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="Area_Id" />
+            </Principal>
+            <Dependent Role="Driver">
+              <PropertyRef Name="Area_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Log_Table_ToDriver">
+          <End Role="Driver" Type="Self.Driver" Multiplicity="0..1" />
+          <End Role="Log_Table" Type="Self.Log_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Driver">
+              <PropertyRef Name="Driver_Id" />
+            </Principal>
+            <Dependent Role="Log_Table">
+              <PropertyRef Name="Driver_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Log_Table_ToUser">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Log_Table" Type="Self.Log_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_Id" />
+            </Principal>
+            <Dependent Role="Log_Table">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Log_Table_ToVolunteer">
+          <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="0..1" />
+          <End Role="Log_Table" Type="Self.Log_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Volunteer">
+              <PropertyRef Name="Volunteer_Id" />
+            </Principal>
+            <Dependent Role="Log_Table">
+              <PropertyRef Name="Volunteer_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NGO_DRIVER_ToDriver">
+          <End Role="Driver" Type="Self.Driver" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="NGO_DRIVER" Type="Self.NGO_DRIVER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Driver">
+              <PropertyRef Name="Driver_Id" />
+            </Principal>
+            <Dependent Role="NGO_DRIVER">
+              <PropertyRef Name="Driver_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NGO_DRIVER_ToNGO">
+          <End Role="NGO" Type="Self.NGO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="NGO_DRIVER" Type="Self.NGO_DRIVER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NGO">
+              <PropertyRef Name="NGO_Id" />
+            </Principal>
+            <Dependent Role="NGO_DRIVER">
+              <PropertyRef Name="NGO_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NGO_ToArea">
+          <End Role="Area" Type="Self.Area" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="NGO" Type="Self.NGO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="Area_Id" />
+            </Principal>
+            <Dependent Role="NGO">
+              <PropertyRef Name="Area_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Table_ToDriver">
+          <End Role="Driver" Type="Self.Driver" Multiplicity="0..1" />
+          <End Role="Transaction_Table" Type="Self.Transaction_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Driver">
+              <PropertyRef Name="Driver_Id" />
+            </Principal>
+            <Dependent Role="Transaction_Table">
+              <PropertyRef Name="Driver_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Table_ToUser">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Transaction_Table" Type="Self.Transaction_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_Id" />
+            </Principal>
+            <Dependent Role="Transaction_Table">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Table_ToVolunteer">
+          <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="0..1" />
+          <End Role="Transaction_Table" Type="Self.Transaction_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Volunteer">
+              <PropertyRef Name="Volunteer_Id" />
+            </Principal>
+            <Dependent Role="Transaction_Table">
+              <PropertyRef Name="Volunteer_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_ToArea">
+          <End Role="Area" Type="Self.Area" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="Area_Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Area_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Volunteer_ToArea">
+          <End Role="Area" Type="Self.Area" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="Area_Id" />
+            </Principal>
+            <Dependent Role="Volunteer">
+              <PropertyRef Name="Area_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbsharesmileModelStoreContainer">
+          <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Driver" EntityType="Self.Driver" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Log_Table" EntityType="Self.Log_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NGO" EntityType="Self.NGO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NGO_DRIVER" EntityType="Self.NGO_DRIVER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transaction_Table" EntityType="Self.Transaction_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Volunteer" EntityType="Self.Volunteer" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Area_ToCity" Association="Self.FK_Area_ToCity">
+            <End Role="City" EntitySet="City" />
+            <End Role="Area" EntitySet="Area" />
+          </AssociationSet>
+          <AssociationSet Name="FK_City_ToState" Association="Self.FK_City_ToState">
+            <End Role="State" EntitySet="State" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Driver_ToArea" Association="Self.FK_Driver_ToArea">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Driver" EntitySet="Driver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Log_Table_ToDriver" Association="Self.FK_Log_Table_ToDriver">
+            <End Role="Driver" EntitySet="Driver" />
+            <End Role="Log_Table" EntitySet="Log_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Log_Table_ToUser" Association="Self.FK_Log_Table_ToUser">
+            <End Role="User" EntitySet="User" />
+            <End Role="Log_Table" EntitySet="Log_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Log_Table_ToVolunteer" Association="Self.FK_Log_Table_ToVolunteer">
+            <End Role="Volunteer" EntitySet="Volunteer" />
+            <End Role="Log_Table" EntitySet="Log_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NGO_DRIVER_ToDriver" Association="Self.FK_NGO_DRIVER_ToDriver">
+            <End Role="Driver" EntitySet="Driver" />
+            <End Role="NGO_DRIVER" EntitySet="NGO_DRIVER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NGO_DRIVER_ToNGO" Association="Self.FK_NGO_DRIVER_ToNGO">
+            <End Role="NGO" EntitySet="NGO" />
+            <End Role="NGO_DRIVER" EntitySet="NGO_DRIVER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NGO_ToArea" Association="Self.FK_NGO_ToArea">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="NGO" EntitySet="NGO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Table_ToDriver" Association="Self.FK_Transaction_Table_ToDriver">
+            <End Role="Driver" EntitySet="Driver" />
+            <End Role="Transaction_Table" EntitySet="Transaction_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Table_ToUser" Association="Self.FK_Transaction_Table_ToUser">
+            <End Role="User" EntitySet="User" />
+            <End Role="Transaction_Table" EntitySet="Transaction_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Table_ToVolunteer" Association="Self.FK_Transaction_Table_ToVolunteer">
+            <End Role="Volunteer" EntitySet="Volunteer" />
+            <End Role="Transaction_Table" EntitySet="Transaction_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_ToArea" Association="Self.FK_User_ToArea">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Volunteer_ToArea" Association="Self.FK_Volunteer_ToArea">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Volunteer" EntitySet="Volunteer" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbsharesmileModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="Area_Id" />
+          </Key>
+          <Property Name="Area_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Area_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="City_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="Self.FK_Area_ToCity" FromRole="Area" ToRole="City" />
+          <NavigationProperty Name="Drivers" Relationship="Self.FK_Driver_ToArea" FromRole="Area" ToRole="Driver" />
+          <NavigationProperty Name="NGOes" Relationship="Self.FK_NGO_ToArea" FromRole="Area" ToRole="NGO" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_ToArea" FromRole="Area" ToRole="User" />
+          <NavigationProperty Name="Volunteers" Relationship="Self.FK_Volunteer_ToArea" FromRole="Area" ToRole="Volunteer" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="City_Id" />
+          </Key>
+          <Property Name="City_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="City_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="State_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Areas" Relationship="Self.FK_Area_ToCity" FromRole="City" ToRole="Area" />
+          <NavigationProperty Name="State" Relationship="Self.FK_City_ToState" FromRole="City" ToRole="State" />
+        </EntityType>
+        <EntityType Name="Driver">
+          <Key>
+            <PropertyRef Name="Driver_Id" />
+          </Key>
+          <Property Name="Driver_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="F_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="L_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address_Line_1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address_Line_2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mobile_Number" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Mobile_Alternate" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="254" FixedLength="false" Unicode="false" />
+          <Property Name="Area_Id" Type="Int32" Nullable="false" />
+          <Property Name="Close" Type="Boolean" />
+          <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Account_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Area" Relationship="Self.FK_Driver_ToArea" FromRole="Driver" ToRole="Area" />
+          <NavigationProperty Name="Log_Table" Relationship="Self.FK_Log_Table_ToDriver" FromRole="Driver" ToRole="Log_Table" />
+          <NavigationProperty Name="NGO_DRIVER" Relationship="Self.FK_NGO_DRIVER_ToDriver" FromRole="Driver" ToRole="NGO_DRIVER" />
+          <NavigationProperty Name="Transaction_Table" Relationship="Self.FK_Transaction_Table_ToDriver" FromRole="Driver" ToRole="Transaction_Table" />
+        </EntityType>
+        <EntityType Name="Log_Table">
+          <Key>
+            <PropertyRef Name="Log_Table_Id" />
+          </Key>
+          <Property Name="Log_Table_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_Id" Type="Int32" />
+          <Property Name="Volunteer_Id" Type="Int32" />
+          <Property Name="Driver_Id" Type="Int32" />
+          <Property Name="Time_Begin" Type="DateTime" Precision="3" />
+          <Property Name="Time_Close" Type="DateTime" Precision="3" />
+          <Property Name="Items" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Successful" Type="Boolean" />
+          <Property Name="Vehicle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Driver" Relationship="Self.FK_Log_Table_ToDriver" FromRole="Log_Table" ToRole="Driver" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Log_Table_ToUser" FromRole="Log_Table" ToRole="User" />
+          <NavigationProperty Name="Volunteer" Relationship="Self.FK_Log_Table_ToVolunteer" FromRole="Log_Table" ToRole="Volunteer" />
+        </EntityType>
+        <EntityType Name="NGO">
+          <Key>
+            <PropertyRef Name="NGO_Id" />
+          </Key>
+          <Property Name="NGO_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address_Line_1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address_Line_2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mobile_Number" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Mobile_Alternate" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Area_Id" Type="Int32" Nullable="false" />
+          <Property Name="NGO_Logo_File" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="254" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Website_URL" Type="String" MaxLength="2083" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telephone" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Account_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Area" Relationship="Self.FK_NGO_ToArea" FromRole="NGO" ToRole="Area" />
+          <NavigationProperty Name="NGO_DRIVER" Relationship="Self.FK_NGO_DRIVER_ToNGO" FromRole="NGO" ToRole="NGO_DRIVER" />
+        </EntityType>
+        <EntityType Name="NGO_DRIVER">
+          <Key>
+            <PropertyRef Name="NGO_Driver_Id" />
+          </Key>
+          <Property Name="NGO_Driver_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NGO_Id" Type="Int32" Nullable="false" />
+          <Property Name="Driver_Id" Type="Int32" Nullable="false" />
+          <Property Name="Time_Stamp" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Driver" Relationship="Self.FK_NGO_DRIVER_ToDriver" FromRole="NGO_DRIVER" ToRole="Driver" />
+          <NavigationProperty Name="NGO" Relationship="Self.FK_NGO_DRIVER_ToNGO" FromRole="NGO_DRIVER" ToRole="NGO" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="State_Id" />
+          </Key>
+          <Property Name="State_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="State_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cities" Relationship="Self.FK_City_ToState" FromRole="State" ToRole="City" />
+        </EntityType>
+        <EntityType Name="Transaction_Table">
+          <Key>
+            <PropertyRef Name="Transaction_Id" />
+          </Key>
+          <Property Name="Transaction_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_Id" Type="Int32" />
+          <Property Name="Volunteer_Id" Type="Int32" />
+          <Property Name="Driver_Id" Type="Int32" />
+          <Property Name="Time_Begin" Type="DateTime" Precision="3" />
+          <Property Name="Time_Close" Type="DateTime" Precision="3" />
+          <Property Name="Items" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Successful" Type="Boolean" />
+          <Property Name="Vehicle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="L_User" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="L_Volunteer" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="L_Driver" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Driver" Relationship="Self.FK_Transaction_Table_ToDriver" FromRole="Transaction_Table" ToRole="Driver" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Transaction_Table_ToUser" FromRole="Transaction_Table" ToRole="User" />
+          <NavigationProperty Name="Volunteer" Relationship="Self.FK_Transaction_Table_ToVolunteer" FromRole="Transaction_Table" ToRole="Volunteer" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_Id" />
+          </Key>
+          <Property Name="User_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="F_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="L_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address_Line_1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address_Line_2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Area_Id" Type="Int32" Nullable="false" />
+          <Property Name="Mobile_Number" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Mobile_Alternate" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="254" FixedLength="false" Unicode="false" />
+          <Property Name="Close" Type="Boolean" />
+          <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Account_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Area" Relationship="Self.FK_User_ToArea" FromRole="User" ToRole="Area" />
+          <NavigationProperty Name="Log_Table" Relationship="Self.FK_Log_Table_ToUser" FromRole="User" ToRole="Log_Table" />
+          <NavigationProperty Name="Transaction_Table" Relationship="Self.FK_Transaction_Table_ToUser" FromRole="User" ToRole="Transaction_Table" />
+        </EntityType>
+        <EntityType Name="Volunteer">
+          <Key>
+            <PropertyRef Name="Volunteer_Id" />
+          </Key>
+          <Property Name="Volunteer_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NGO_Id" Type="Int32" Nullable="false" />
+          <Property Name="F_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="L_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address_Line_1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address_Line_2" Type="String" MaxLength="500" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Area_Id" Type="Int32" Nullable="false" />
+          <Property Name="Mobile_Number" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Mobile_Alternate" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="254" FixedLength="false" Unicode="false" />
+          <Property Name="Close" Type="Boolean" />
+          <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Account_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Area" Relationship="Self.FK_Volunteer_ToArea" FromRole="Volunteer" ToRole="Area" />
+          <NavigationProperty Name="Log_Table" Relationship="Self.FK_Log_Table_ToVolunteer" FromRole="Volunteer" ToRole="Log_Table" />
+          <NavigationProperty Name="Transaction_Table" Relationship="Self.FK_Transaction_Table_ToVolunteer" FromRole="Volunteer" ToRole="Transaction_Table" />
+        </EntityType>
+        <Association Name="FK_Area_ToCity">
+          <End Role="City" Type="Self.City" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Area" Type="Self.Area" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="City_Id" />
+            </Principal>
+            <Dependent Role="Area">
+              <PropertyRef Name="City_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Driver_ToArea">
+          <End Role="Area" Type="Self.Area" Multiplicity="1" />
+          <End Role="Driver" Type="Self.Driver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="Area_Id" />
+            </Principal>
+            <Dependent Role="Driver">
+              <PropertyRef Name="Area_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NGO_ToArea">
+          <End Role="Area" Type="Self.Area" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="NGO" Type="Self.NGO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="Area_Id" />
+            </Principal>
+            <Dependent Role="NGO">
+              <PropertyRef Name="Area_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_ToArea">
+          <End Role="Area" Type="Self.Area" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="Area_Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Area_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Volunteer_ToArea">
+          <End Role="Area" Type="Self.Area" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="Area_Id" />
+            </Principal>
+            <Dependent Role="Volunteer">
+              <PropertyRef Name="Area_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_City_ToState">
+          <End Role="State" Type="Self.State" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="City" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="State_Id" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="State_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Log_Table_ToDriver">
+          <End Role="Driver" Type="Self.Driver" Multiplicity="0..1" />
+          <End Role="Log_Table" Type="Self.Log_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Driver">
+              <PropertyRef Name="Driver_Id" />
+            </Principal>
+            <Dependent Role="Log_Table">
+              <PropertyRef Name="Driver_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NGO_DRIVER_ToDriver">
+          <End Role="Driver" Type="Self.Driver" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="NGO_DRIVER" Type="Self.NGO_DRIVER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Driver">
+              <PropertyRef Name="Driver_Id" />
+            </Principal>
+            <Dependent Role="NGO_DRIVER">
+              <PropertyRef Name="Driver_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Table_ToDriver">
+          <End Role="Driver" Type="Self.Driver" Multiplicity="0..1" />
+          <End Role="Transaction_Table" Type="Self.Transaction_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Driver">
+              <PropertyRef Name="Driver_Id" />
+            </Principal>
+            <Dependent Role="Transaction_Table">
+              <PropertyRef Name="Driver_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Log_Table_ToUser">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Log_Table" Type="Self.Log_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_Id" />
+            </Principal>
+            <Dependent Role="Log_Table">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Log_Table_ToVolunteer">
+          <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="0..1" />
+          <End Role="Log_Table" Type="Self.Log_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Volunteer">
+              <PropertyRef Name="Volunteer_Id" />
+            </Principal>
+            <Dependent Role="Log_Table">
+              <PropertyRef Name="Volunteer_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NGO_DRIVER_ToNGO">
+          <End Role="NGO" Type="Self.NGO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="NGO_DRIVER" Type="Self.NGO_DRIVER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NGO">
+              <PropertyRef Name="NGO_Id" />
+            </Principal>
+            <Dependent Role="NGO_DRIVER">
+              <PropertyRef Name="NGO_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Table_ToUser">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Transaction_Table" Type="Self.Transaction_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_Id" />
+            </Principal>
+            <Dependent Role="Transaction_Table">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Table_ToVolunteer">
+          <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="0..1" />
+          <End Role="Transaction_Table" Type="Self.Transaction_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Volunteer">
+              <PropertyRef Name="Volunteer_Id" />
+            </Principal>
+            <Dependent Role="Transaction_Table">
+              <PropertyRef Name="Volunteer_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShareSmileDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Areas" EntityType="Self.Area" />
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="Drivers" EntityType="Self.Driver" />
+          <EntitySet Name="Log_Table" EntityType="Self.Log_Table" />
+          <EntitySet Name="NGOes" EntityType="Self.NGO" />
+          <EntitySet Name="NGO_DRIVER" EntityType="Self.NGO_DRIVER" />
+          <EntitySet Name="States" EntityType="Self.State" />
+          <EntitySet Name="Transaction_Table" EntityType="Self.Transaction_Table" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Volunteers" EntityType="Self.Volunteer" />
+          <AssociationSet Name="FK_Area_ToCity" Association="Self.FK_Area_ToCity">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="Area" EntitySet="Areas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Driver_ToArea" Association="Self.FK_Driver_ToArea">
+            <End Role="Area" EntitySet="Areas" />
+            <End Role="Driver" EntitySet="Drivers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NGO_ToArea" Association="Self.FK_NGO_ToArea">
+            <End Role="Area" EntitySet="Areas" />
+            <End Role="NGO" EntitySet="NGOes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_ToArea" Association="Self.FK_User_ToArea">
+            <End Role="Area" EntitySet="Areas" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Volunteer_ToArea" Association="Self.FK_Volunteer_ToArea">
+            <End Role="Area" EntitySet="Areas" />
+            <End Role="Volunteer" EntitySet="Volunteers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_City_ToState" Association="Self.FK_City_ToState">
+            <End Role="State" EntitySet="States" />
+            <End Role="City" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Log_Table_ToDriver" Association="Self.FK_Log_Table_ToDriver">
+            <End Role="Driver" EntitySet="Drivers" />
+            <End Role="Log_Table" EntitySet="Log_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NGO_DRIVER_ToDriver" Association="Self.FK_NGO_DRIVER_ToDriver">
+            <End Role="Driver" EntitySet="Drivers" />
+            <End Role="NGO_DRIVER" EntitySet="NGO_DRIVER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Table_ToDriver" Association="Self.FK_Transaction_Table_ToDriver">
+            <End Role="Driver" EntitySet="Drivers" />
+            <End Role="Transaction_Table" EntitySet="Transaction_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Log_Table_ToUser" Association="Self.FK_Log_Table_ToUser">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Log_Table" EntitySet="Log_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Log_Table_ToVolunteer" Association="Self.FK_Log_Table_ToVolunteer">
+            <End Role="Volunteer" EntitySet="Volunteers" />
+            <End Role="Log_Table" EntitySet="Log_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NGO_DRIVER_ToNGO" Association="Self.FK_NGO_DRIVER_ToNGO">
+            <End Role="NGO" EntitySet="NGOes" />
+            <End Role="NGO_DRIVER" EntitySet="NGO_DRIVER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Table_ToUser" Association="Self.FK_Transaction_Table_ToUser">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Transaction_Table" EntitySet="Transaction_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Table_ToVolunteer" Association="Self.FK_Transaction_Table_ToVolunteer">
+            <End Role="Volunteer" EntitySet="Volunteers" />
+            <End Role="Transaction_Table" EntitySet="Transaction_Table" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbsharesmileModelStoreContainer" CdmEntityContainer="ShareSmileDatabaseEntities">
+          <EntitySetMapping Name="Areas">
+            <EntityTypeMapping TypeName="dbsharesmileModel.Area">
+              <MappingFragment StoreEntitySet="Area">
+                <ScalarProperty Name="Area_Id" ColumnName="Area_Id" />
+                <ScalarProperty Name="Area_Name" ColumnName="Area_Name" />
+                <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="dbsharesmileModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+                <ScalarProperty Name="City_Name" ColumnName="City_Name" />
+                <ScalarProperty Name="State_Id" ColumnName="State_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drivers">
+            <EntityTypeMapping TypeName="dbsharesmileModel.Driver">
+              <MappingFragment StoreEntitySet="Driver">
+                <ScalarProperty Name="Driver_Id" ColumnName="Driver_Id" />
+                <ScalarProperty Name="F_Name" ColumnName="F_Name" />
+                <ScalarProperty Name="L_Name" ColumnName="L_Name" />
+                <ScalarProperty Name="Address_Line_1" ColumnName="Address_Line_1" />
+                <ScalarProperty Name="Address_Line_2" ColumnName="Address_Line_2" />
+                <ScalarProperty Name="Mobile_Number" ColumnName="Mobile_Number" />
+                <ScalarProperty Name="Mobile_Alternate" ColumnName="Mobile_Alternate" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Area_Id" ColumnName="Area_Id" />
+                <ScalarProperty Name="Close" ColumnName="Close" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Account_Status" ColumnName="Account_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Log_Table">
+            <EntityTypeMapping TypeName="dbsharesmileModel.Log_Table">
+              <MappingFragment StoreEntitySet="Log_Table">
+                <ScalarProperty Name="Log_Table_Id" ColumnName="Log_Table_Id" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Volunteer_Id" ColumnName="Volunteer_Id" />
+                <ScalarProperty Name="Driver_Id" ColumnName="Driver_Id" />
+                <ScalarProperty Name="Time_Begin" ColumnName="Time_Begin" />
+                <ScalarProperty Name="Time_Close" ColumnName="Time_Close" />
+                <ScalarProperty Name="Items" ColumnName="Items" />
+                <ScalarProperty Name="Successful" ColumnName="Successful" />
+                <ScalarProperty Name="Vehicle" ColumnName="Vehicle" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NGOes">
+            <EntityTypeMapping TypeName="dbsharesmileModel.NGO">
+              <MappingFragment StoreEntitySet="NGO">
+                <ScalarProperty Name="NGO_Id" ColumnName="NGO_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address_Line_1" ColumnName="Address_Line_1" />
+                <ScalarProperty Name="Address_Line_2" ColumnName="Address_Line_2" />
+                <ScalarProperty Name="Mobile_Number" ColumnName="Mobile_Number" />
+                <ScalarProperty Name="Mobile_Alternate" ColumnName="Mobile_Alternate" />
+                <ScalarProperty Name="Area_Id" ColumnName="Area_Id" />
+                <ScalarProperty Name="NGO_Logo_File" ColumnName="NGO_Logo_File" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Website_URL" ColumnName="Website_URL" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Account_Status" ColumnName="Account_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NGO_DRIVER">
+            <EntityTypeMapping TypeName="dbsharesmileModel.NGO_DRIVER">
+              <MappingFragment StoreEntitySet="NGO_DRIVER">
+                <ScalarProperty Name="NGO_Driver_Id" ColumnName="NGO_Driver_Id" />
+                <ScalarProperty Name="NGO_Id" ColumnName="NGO_Id" />
+                <ScalarProperty Name="Driver_Id" ColumnName="Driver_Id" />
+                <ScalarProperty Name="Time_Stamp" ColumnName="Time_Stamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="dbsharesmileModel.State">
+              <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="State_Id" ColumnName="State_Id" />
+                <ScalarProperty Name="State_Name" ColumnName="State_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transaction_Table">
+            <EntityTypeMapping TypeName="dbsharesmileModel.Transaction_Table">
+              <MappingFragment StoreEntitySet="Transaction_Table">
+                <ScalarProperty Name="Transaction_Id" ColumnName="Transaction_Id" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Volunteer_Id" ColumnName="Volunteer_Id" />
+                <ScalarProperty Name="Driver_Id" ColumnName="Driver_Id" />
+                <ScalarProperty Name="Time_Begin" ColumnName="Time_Begin" />
+                <ScalarProperty Name="Time_Close" ColumnName="Time_Close" />
+                <ScalarProperty Name="Items" ColumnName="Items" />
+                <ScalarProperty Name="Successful" ColumnName="Successful" />
+                <ScalarProperty Name="Vehicle" ColumnName="Vehicle" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="L_User" ColumnName="L_User" />
+                <ScalarProperty Name="L_Volunteer" ColumnName="L_Volunteer" />
+                <ScalarProperty Name="L_Driver" ColumnName="L_Driver" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="dbsharesmileModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="F_Name" ColumnName="F_Name" />
+                <ScalarProperty Name="L_Name" ColumnName="L_Name" />
+                <ScalarProperty Name="Address_Line_1" ColumnName="Address_Line_1" />
+                <ScalarProperty Name="Address_Line_2" ColumnName="Address_Line_2" />
+                <ScalarProperty Name="Area_Id" ColumnName="Area_Id" />
+                <ScalarProperty Name="Mobile_Number" ColumnName="Mobile_Number" />
+                <ScalarProperty Name="Mobile_Alternate" ColumnName="Mobile_Alternate" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Close" ColumnName="Close" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Account_Status" ColumnName="Account_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Volunteers">
+            <EntityTypeMapping TypeName="dbsharesmileModel.Volunteer">
+              <MappingFragment StoreEntitySet="Volunteer">
+                <ScalarProperty Name="Volunteer_Id" ColumnName="Volunteer_Id" />
+                <ScalarProperty Name="NGO_Id" ColumnName="NGO_Id" />
+                <ScalarProperty Name="F_Name" ColumnName="F_Name" />
+                <ScalarProperty Name="L_Name" ColumnName="L_Name" />
+                <ScalarProperty Name="Address_Line_1" ColumnName="Address_Line_1" />
+                <ScalarProperty Name="Address_Line_2" ColumnName="Address_Line_2" />
+                <ScalarProperty Name="Area_Id" ColumnName="Area_Id" />
+                <ScalarProperty Name="Mobile_Number" ColumnName="Mobile_Number" />
+                <ScalarProperty Name="Mobile_Alternate" ColumnName="Mobile_Alternate" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Close" ColumnName="Close" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Account_Status" ColumnName="Account_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
